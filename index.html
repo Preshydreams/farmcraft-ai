@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FarmCraft AI | Smart Farming</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f8f1;
+      color: #243b2a;
+    }
+
+    header {
+      background: #174d2a;
+      color: white;
+      padding: 24px 16px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+    }
+
+    header p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 14px;
+      background: white;
+    }
+
+    nav button {
+      border: none;
+      border-radius: 8px;
+      padding: 10px 14px;
+      background: #e1efdf;
+      color: #174d2a;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    main {
+      max-width: 850px;
+      margin: 25px auto;
+      padding: 0 16px;
+    }
+
+    .hero, .card {
+      background: white;
+      border-radius: 14px;
+      padding: 22px;
+      margin-bottom: 18px;
+      box-shadow: 0 3px 12px #0000000a;
+    }
+
+    .hero {
+      background: #e1efdf;
+    }
+
+    h2 {
+      color: #174d2a;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .card button, .hero button {
+      background: #24743b;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 16px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .assistant-box {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 100px;
+      padding: 12px;
+      border: 1px solid #ccd8cc;
+      border-radius: 8px;
+      font: inherit;
+    }
+
+    #answer {
+      white-space: pre-wrap;
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: #627565;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🌱 FarmCraft AI</h1>
+  <p>Smart Knowledge for Better Farming</p>
+</header>
+
+<nav>
+  <button onclick="showSection('home')">Home</button>
+  <button onclick="showSection('crops')">Crop Farming</button>
+  <button onclick="showSection('livestock')">Livestock</button>
+  <button onclick="showSection('fish')">Fish Farming</button>
+  <button onclick="showSection('assistant')">AI Assistant</button>
+</nav>
+
+<main>
+  <section id="home">
+    <div class="hero">
+      <h2>Welcome to FarmCraft AI!</h2>
+      <p>Your learning companion for crop production, livestock management, fish farming, and agricultural business.</p>
+      <button onclick="showSection('assistant')">Explore Farming Help</button>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>🌾 Crop Farming</h2>
+        <p>Explore soil preparation, planting, irrigation, pest management, and harvesting.</p>
+        <button onclick="showSection('crops')">Explore Crops</button>
+      </div>
+
+      <div class="card">
+        <h2>🐄 Livestock Farming</h2>
+        <p>Learn about animal feeding, housing, breeding, and farm management.</p>
+        <button onclick="showSection('livestock')">Explore Livestock</button>
+      </div>
+
+      <div class="card">
+        <h2>🐟 Fish Farming</h2>
+        <p>Discover pond management, fish feeding, water quality, and harvesting.</p>
+        <button onclick="showSection('fish')">Explore Fish Farming</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="crops" hidden>
+    <div class="card">
+      <h2>🌾 Crop Farming</h2>
+      <h3>Getting Started</h3>
+      <ul>
+        <li>Choose crops suited to your climate and soil.</li>
+        <li>Prepare the soil and use healthy seeds.</li>
+        <li>Plan irrigation, weed control, and nutrient management.</li>
+        <li>Monitor pests and diseases regularly.</li>
+        <li>Harvest and store produce correctly.</li>
+      </ul>
+      <p>Start with a crop-specific plan based on your location, season, and budget.</p>
+    </div>
+  </section>
+
+  <section id="livestock" hidden>
+    <div class="card">
+      <h2>🐄 Livestock Farming</h2>
+      <h3>Getting Started</h3>
+      <ul>
+        <li>Choose a suitable species and production goal.</li>
+        <li>Provide secure, clean, well-ventilated housing.</li>
+        <li>Use balanced feed and clean drinking water.</li>
+        <li>Follow local veterinary vaccination and biosecurity advice.</li>
+        <li>Keep records of costs, growth, health, and sales.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="fish" hidden>
+    <div class="card">
+      <h2>🐟 Fish Farming</h2>
+      <h3>Getting Started</h3>
+      <ul>
+        <li>Select a suitable fish species and production system.</li>
+        <li>Prepare the pond or tank before stocking.</li>
+        <li>Use healthy fingerlings from a reputable hatchery.</li>
+        <li>Monitor water quality and feeding carefully.</li>
+        <li>Track growth, mortality, expenses, and harvest dates.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="assistant" hidden>
+    <div class="card">
+      <h2>🤖 Farming Question Assistant</h2>
+      <p>Enter a farming question to receive general guidance and suggested topics to investigate.</p>
+      <div class="assistant-box">
+        <textarea id="question" placeholder="Example: How do I prepare a small catfish farm?"></textarea>
+        <button onclick="answerQuestion()">Get Guidance</button>
+        <div id="answer" aria-live="polite"></div>
+      </div>
+      <p><small>This starter version provides basic guidance, not live AI answers. An AI service can be connected in a later step.</small></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  © 2026 FarmCraft AI · Learn Smarter. Farm Better.
+</footer>
+
+<script>
+  function showSection(sectionId) {
+    document.querySelectorAll("main > section").forEach(section => {
+      section.hidden = section.id !== sectionId;
+    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function answerQuestion() {
+    const question = document.getElementById("question").value.trim();
+    const answer = document.getElementById("answer");
+
+    if (!question) {
+      answer.textContent = "Please enter your farming question first.";
+      return;
+    }
+
+    answer.textContent =
+      "Thanks for your question: " + question +
+      "\n\nTo investigate this safely:\n" +
+      "1. Identify your crop, animal, or fish species.\n" +
+      "2. Record the location and details of the problem.\n" +
+      "3. Check trusted agricultural guidance for your area.\n" +
+      "4. Consult an agricultural extension officer or veterinarian " +
+      "when disease or serious losses are involved.\n\n" +
+      "Note: Live AI answers have not yet been connected to this app.";
+  }
+</script>
+
+</body>
+                                              </html>
